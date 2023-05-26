@@ -20,7 +20,7 @@
                                 <div class="alert alert-danger" *ngIf="fc['title'].touched && fc['title'].invalid"> Title is required. </div>
                             </div>
                             <div *ngIf="fc['title'].errors?.['minlength']">
-                                <div class="alert alert-danger" *ngIf="fc['title'].touched && fc['title'].invalid"> Title must be atleast 20 characters long. </div>
+                                <div class="alert alert-danger" *ngIf="fc['title'].touched && fc['title'].invalid"> Title must be atleast 10 characters long. </div>
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             <select class="form-control" formControlName="category"
                             [ngClass]="{ 'is-invalid': fc['category'].touched && fc['category'].invalid }">
                                 <option value="" disabled> Please select a catagory </option>
-                                <option *ngFor="let category of categories" value="{{category.id}}-{{category.data.categor}}"> {{ category.data.category }} </option>
+                                <option *ngFor="let category of categories" value="{{category.id}}-{{category.data.category}}"> {{ category.data.category }} </option>
                             </select>
                             <div *ngIf="fc['category'].errors?.['required']">
                                 <div class="alert alert-danger" *ngIf="fc['category'].touched && fc['category'].invalid"> Please select a post category. </div>
