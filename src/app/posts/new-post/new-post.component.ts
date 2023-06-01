@@ -4,6 +4,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
 import { ActivatedRoute } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-new-post',
@@ -16,12 +17,50 @@ export class NewPostComponent implements OnInit {
   imgSrc: any = './assets/placeholder-image.jpg';
   selectedImg: any;
   categories: Array<any> | undefined;
-  htmlContent: any = '';
+  htmlContent = '';
   isDisabled: boolean = true;
   postForm!: FormGroup;
   post: any;
   formStatus: string = 'Add New';
   docId: string | undefined;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+  };
 
   constructor(private categoryService: CategoriesService,
     private fb: FormBuilder,
@@ -43,7 +82,7 @@ export class NewPostComponent implements OnInit {
             permalink: [this.post.permalink, Validators.required],
             excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
             category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
-            postImg: ['', Validators.required],
+            postImg: [this.post.postImgPath, Validators.required],
             content: [this.post.content, Validators.required]
           })
           this.imgSrc = this.post.postImgPath;

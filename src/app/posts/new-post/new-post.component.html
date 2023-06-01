@@ -87,7 +87,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for=""> Content </label>
-                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" formControlName="content"></angular-editor>
+                                <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+                                <!-- <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" formControlName="content"></angular-editor> -->
                                 <!-- <angular-editor placeholder="Add your content here"></angular-editor> -->
                                 <div *ngIf="fc['content'].errors?.['required']">
                                     <div class="alert alert-danger" *ngIf="fc['content'].touched && fc['content'].invalid"> Content is required. </div>

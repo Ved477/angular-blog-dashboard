@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
         console.log('Access Granted..!!');
         return true;
       } else {
-        this.toastr.warning('You dont have permission to access this page...!!')
+        this.toastr.warning('You dont have permission to access this page...!!');
         this.router.navigate(['/login']);
         return false;
       }
